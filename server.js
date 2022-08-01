@@ -14,8 +14,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-const PORT = process.env.PORT || 3000;
-
 const db = knex({
   client: "pg",
   connection: {
@@ -41,6 +39,8 @@ app.get("/profile/:id", (req, res) => profile.handleProfile(req, res, db));
 //Image Entries
 app.put("/image", (req, res) => image.handleIamge(req, res, db));
 app.post("/imageurl", (req, res) => image.handleApiCall(req, res));
+
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`app is running on port ${PORT}`);
